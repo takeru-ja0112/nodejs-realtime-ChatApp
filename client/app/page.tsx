@@ -9,18 +9,12 @@ const socket = io("http://localhost:5000");
 
 export default function Home() {
   const [message, setMessage] = useState("");
-  const [history, setHistory] = useState<{ message: string }[]>([]);
   const [list, setList] = useState<{ message: string; chatId: string }[]>([]);
 
   const handleSendMessage = () => {
     socket.emit("send_message", { message: message, cahtId: generateId() });
     setMessage("");
   };
-
-  //メッセージ履歴の受信
-  socket.on("message_history", (history)=>{
-    setHistory(history);
-  })
 
   // サーバーから受信
   socket.on('received_message', (date) => {
