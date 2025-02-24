@@ -5,14 +5,14 @@ import io from 'socket.io-client';
 import { v4 as uuidv4 } from 'uuid';
 
 const generateId = () => uuidv4();
-const socket = io("http://localhost:5000");
+const socket = io("https://main.d1bje3iesvq25w.amplifyapp.com/");
 
 export default function Home() {
   const [message, setMessage] = useState("");
   const [list, setList] = useState<{ message: string; chatId: string }[]>([]);
 
   const handleSendMessage = () => {
-    socket.emit("send_message", { message: message, cahtId: generateId() });
+    socket.emit("send_message", { message: message, chatId: generateId() });
     setMessage("");
   };
 
