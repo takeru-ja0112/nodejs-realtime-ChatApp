@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import { v4 as uuidv4 } from 'uuid';
 
 const generateId = () => uuidv4();
-const socket = io("https://main.d1bje3iesvq25w.amplifyapp.com/");
+const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:5000");
 
 export default function Home() {
   const [message, setMessage] = useState("");
